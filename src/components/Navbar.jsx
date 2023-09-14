@@ -31,6 +31,7 @@ export const NavBar = ({ login }) => {
           </Button>
         </li>
 
+<<<<<<< HEAD
         <li>
           <Button type="orange-stroke" onClick={() => navigate("/auth/signup")}>
             회원가입
@@ -40,3 +41,14 @@ export const NavBar = ({ login }) => {
     </nav>
   );
 };
+=======
+                <li>
+                    <Button type="orange-stroke" onClick={() => navigate("/auth/signup")}>
+                        회원가입
+                    </Button>
+                </li>
+            </ul>
+        </nav>
+    );
+};
+>>>>>>> c0a66f29da8b75f6a71f889c88d622928c6be8ff
