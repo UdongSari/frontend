@@ -1,18 +1,49 @@
-$container-width: 410px; 
-$container-height: 200px;
-$width : 200px;
+@import "../styles/colors.scss";
+@import "../styles/util.scss";
 
-.Profile{
-  width: $width;
-  height: fit-content;
+.profile-wrapper {
+    box-sizing: border-box;
+    display: flex;
 
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+    width: 1024px;
 
-  .name{
-    font-size: 17px;
-    text-align: center;
-  }
+    margin: 0px auto;
+    padding: 50px;
+    border-bottom-left-radius: 40px;
+    border-bottom-right-radius: 40px;
+    @include container-shadow;
+}
+
+.profile-aside {
+    padding: 0px 10px;
+
+    .profile-img {
+        width: 200px;
+        height: 200px;
+
+        margin: 20px 0px;
+        border-radius: 50%;
+        background-color: gray;
+    }
+
+    .profile-btn {
+        display: flex;
+        gap: 5px;
+    }
+}
+
+.profile-content {
+    padding-left: 25px;
+
+    .profile-content__heading {
+        margin: 10px 0px;
+        font-size: 2rem;
+        font-weight: bold;
+    }
+    .profile-content__table {
+        display: flex;
+        gap: 20px;
+    }
+    .profile-content__description {
+    }
 }
