@@ -36,14 +36,12 @@ export default function RequestDetail() {
 
           <div className="IdCard-Container">
             <span className="IdCard__title-Bold">{photographer}</span>
-            <List.Table />
+            <div className="ListTable-container">
+              <List.Table />
+              <List.TableDetail />
+            </div>
 
-            <span className="IdCard__text">
-              {" "}
-              {IdCard__text.split("\n").map((line, index) => (
-                <p key={index}>{line}</p>
-              ))}
-            </span>
+            <span className="IdCard__text">{IdCard__text} </span>
           </div>
           <div className="IdCard__slider">
             <FontAwesomeIcon icon={faChevronUp} />

@@ -8,20 +8,24 @@
   @include place-center;
 }
 
+.ListTable-container{
+ display: flex;
+ 
+}
+
 .IdCard__text{ 
   /* IdCard__text */
+  display: block;
 font-weight: 400;
 font-size: 20px;
-
-
-
-
+padding-top: 22px;
+white-space: pre-line;
 }
 
 .IdCard-Container{
   width: 667px;
   height: 300px;
-  padding-top: 54px;
+  //padding-top: 54px;
   padding-left: 40px;
 }
 
