@@ -1,0 +1,25 @@
+@import "../styles/colors.scss";
+@import "../styles/util.scss";
+
+.info-container {
+    display: flex;
+    margin: 15px 0px;
+
+    .info-icon {
+        @include place-center;
+        width: 30px;
+        font-size: 1.2rem;
+    }
+
+    .info-title {
+        @include place-center;
+        padding: 0px 20px 0px 5px;
+        font-weight: bold;
+        font-size: 1.2rem;
+    }
+
+    .info-content {
+        display: flex;
+        align-items: center;
+    }
+}
