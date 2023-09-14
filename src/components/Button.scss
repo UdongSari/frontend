@@ -17,6 +17,21 @@
     }
 }
 
+.btn-social {
+    @include place-center;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+
+    &:visited {
+        color: white;
+    }
+
+    &:hover {
+        cursor: pointer;
+    }
+}
+
 .btn-primary {
     background-color: #101010;
     color: white;
