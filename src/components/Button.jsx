@@ -1,4 +1,6 @@
 import "./Button.scss";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faInstagram, faFacebook } from "@fortawesome/free-brands-svg-icons";
 
 export const Button = ({ type, children, width, height, ...rest }) => {
   if (type === "undefined") throw new Error("Button type prop 은 필수입니다");
@@ -32,15 +34,21 @@ export const Button = ({ type, children, width, height, ...rest }) => {
         {children}
       </button>
     );
-  } else if (type === "orange-stroke") {
-    return (
-      <button
-        className="btn-orange-stroke btn-default"
-        style={{ width: width, height: height }}
-        {...rest}
-      >
-        {children}
-      </button>
-    );
   }
+};
+
+export const InstaBtn = () => {
+  return (
+    <>
+      <FontAwesomeIcon icon={faInstagram} />;
+    </>
+  );
+};
+
+export const FacebookBtn = () => {
+  return (
+    <>
+      <FontAwesomeIcon icon={faFacebook} />;
+    </>
+  );
 };
