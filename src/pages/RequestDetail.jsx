@@ -1,6 +1,7 @@
 import { Profile } from "../components/Profile";
 import "./RequestDetail.scss";
 
+
 export default function RequestDetail() {
     return (
         <Profile.Wrapper>
@@ -18,3 +19,4 @@ export default function RequestDetail() {
         </Profile.Wrapper>
     );
 }
+
