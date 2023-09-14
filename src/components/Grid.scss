@@ -2,13 +2,14 @@
 @import "../styles/util.scss";
 
 .Grid-container{
-  display: flex;
+  max-width: 1024px;
   flex-wrap: wrap; /* flex 아이템을 여러 줄로 배치 */
   gap: 10px;
   justify-content: flex-start; /* 내용을 왼쪽에서부터 정렬 */
   @include place-center;
   align-items: flex-start; /* 아이템을 위에서부터 정렬 */
   padding-top: 100px;
+  margin: 0 auto;
 }
 
 .Grid-item{
@@ -18,23 +19,40 @@ height: 300px;
 background: #EBEBEB;
 border-radius: 10px;
 transition: 0.3s ease;
+  position: relative; /* 부모 요소에 대해 상대적 위치 설정 */
+.flex{
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+}
+
+.text{
+  position: relative;
+  height: 29px;
+  color: #FFFFFF;
+  font-weight: 700;
+  font-size: 20px;
+  display: none; /* 기본적으로는 숨김 */
+  padding-right: 10px;
+}
+
+.title{
+  font-size: 32px;
+  padding-bottom: 10px;
+}
+
+.active
+{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
 &:hover {
   cursor: pointer;
   background: linear-gradient(to bottom, #EBEBEB, #CCCCCC);
 }
-
-.text{
-
-  width: 42px;
-height: 29px;
-font-weight: 400;
-font-size: 20px;
-display: flex;
-align-items: center;
-text-align: center;color: #000000;
-
-
 }
-}
+
 
 
