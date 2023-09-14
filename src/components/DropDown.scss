@@ -1,0 +1,52 @@
+@import "../styles/colors.scss";
+@import "../styles/util.scss";
+
+.dropdown-wrapper {
+    position: relative;
+
+    display: flex;
+    width: 150px;
+    height: 35px;
+
+    border: 1px solid black;
+    border-radius: 15px;
+
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+.dropdown-container {
+    @include place-center;
+    width: 100%;
+}
+
+.dropdown-icon {
+    @include place-center;
+    height: 100%;
+
+    padding-right: 20px;
+}
+
+.dropdown-items {
+    position: absolute;
+    top: 35px;
+    width: 150px;
+}
+
+.dropdown-item {
+    @include place-center;
+
+    height: 35px;
+    border: 1px solid black;
+    border-top: 0;
+
+    &:last-child {
+        border-bottom-left-radius: 15px;
+        border-bottom-right-radius: 15px;
+    }
+    &:hover {
+        background-color: #ebebeb;
+        cursor: pointer;
+    }
+}
