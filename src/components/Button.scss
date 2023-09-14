@@ -11,6 +11,10 @@
     border-radius: 40px;
 
     font-weight: bold;
+
+    &:hover {
+        cursor: pointer;
+    }
 }
 
 .btn-primary {

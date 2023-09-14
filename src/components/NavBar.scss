@@ -1,0 +1,29 @@
+@import "../styles/colors.scss";
+@import "../styles/util.scss";
+
+.nav-wrapper {
+    @include wrapper-width;
+}
+
+.nav-container {
+    display: flex;
+    gap: 10px;
+
+    li {
+        @include place-center;
+        width: 120px;
+        height: 80px;
+
+        &:first-child {
+            font-size: 1.8rem;
+            font-weight: bold;
+            padding-right: 30px;
+
+            color: $color-orange;
+            a,
+            a:visited {
+                color: $color-orange;
+            }
+        }
+    }
+}
