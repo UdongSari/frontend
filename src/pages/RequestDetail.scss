@@ -5,12 +5,14 @@
   width: 80%;
   max-width: 1280px;
   margin: 0px auto;
+  display: flex;
+  flex-direction: column;
   @include place-center;
 }
 
 .ListTable-container{
  display: flex;
- 
+
 }
 
 .IdCard__text{ 
@@ -73,4 +75,8 @@ align-items: center;
 .IdCard__ProfileCircle{
   width: 200px;
   height: 200px;
+}
+
+.RequestDetail-grid{
+  justify-content: center;
 }

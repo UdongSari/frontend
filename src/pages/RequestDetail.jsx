@@ -5,6 +5,7 @@ import { List } from "../components/List";
 import "./RequestDetail.scss";
 import { Button, InstaBtn, FacebookBtn } from "../components/Button";
 import Profile from "../components/Profile";
+import Grid from "../components/Grid";
 
 export default function RequestDetail() {
   const [photographer, setPhotographer] = useState("000 Portfolio ");
@@ -46,11 +47,12 @@ export default function RequestDetail() {
           <div className="IdCard__slider">
             <FontAwesomeIcon icon={faChevronUp} />
           </div>
-          <div className="RequestDetail-container">
-            <div className="RequestDetail-grid">
-              <div className="RequestDetail-grid-activeitem" />
-              <div className="RequestDetail-grid-item" />
-            </div>
+        </div>
+        <div className="RequestDetail-container">
+          <div className="RequestDetail-grid">
+            <Grid />
+            <div className="RequestDetail-grid-activeitem" />
+            <div className="RequestDetail-grid-item" />
           </div>
         </div>
       </div>
