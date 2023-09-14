@@ -2,6 +2,14 @@ import "./Button.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInstagram, faFacebook } from "@fortawesome/free-brands-svg-icons";
 
+export const ButtonGroup = ({ children, ...rest }) => {
+    return (
+        <div className="btn-group" {...rest}>
+            {children}
+        </div>
+    );
+};
+
 export const Button = ({ type, children, width, height, ...rest }) => {
     if (type === "undefined") throw new Error("Button type prop 은 필수입니다");
     else if (type === "primary") {
@@ -25,6 +33,18 @@ export const Button = ({ type, children, width, height, ...rest }) => {
     } else if (type === "orange-stroke") {
         return (
             <button className="btn-orange-stroke btn-default" style={{ width: width, height: height }} {...rest}>
+                {children}
+            </button>
+        );
+    } else if (type === "green-filled") {
+        return (
+            <button className="btn-green-filled btn-default" style={{ width: width, height: height }} {...rest}>
+                {children}
+            </button>
+        );
+    } else if (type === "green-stroke") {
+        return (
+            <button className="btn-green-stroke btn-default" style={{ width: width, height: height }} {...rest}>
                 {children}
             </button>
         );
