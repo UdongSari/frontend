@@ -1,0 +1,27 @@
+@import "../styles/colors.scss";
+@import "../styles/util.scss";
+
+.hashtag-group {
+    display: flex;
+}
+
+.hashtag-item {
+    @include place-center;
+    width: auto;
+    height: 35px;
+
+    margin: 0px 5px;
+    padding: 0px 20px;
+    border: 1px solid black;
+    border-radius: 20px;
+
+    span:first-child {
+        padding: 0px 3px;
+    }
+}
+
+.hashtag-active {
+    border: 2px solid $color-orange;
+    color: $color-orange;
+    font-weight: bold;
+}
