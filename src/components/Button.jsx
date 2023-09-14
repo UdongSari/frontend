@@ -40,7 +40,12 @@ export const Button = ({ type, children, width, height, ...rest }) => {
 export const InstaBtn = () => {
   return (
     <>
-      <FontAwesomeIcon icon={faInstagram} />;
+      <button
+        className="btn-primary btn-default"
+        style={{ width: "35px", height: "35px" }}
+      >
+        <FontAwesomeIcon icon={faInstagram} />
+      </button>
     </>
   );
 };
@@ -48,7 +53,12 @@ export const InstaBtn = () => {
 export const FacebookBtn = () => {
   return (
     <>
-      <FontAwesomeIcon icon={faFacebook} />;
+      <button
+        className="btn-primary btn-default"
+        style={{ width: "35px", height: "35px" }}
+      >
+        <FontAwesomeIcon icon={faFacebook} />
+      </button>
     </>
   );
 };

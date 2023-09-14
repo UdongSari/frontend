@@ -5,7 +5,6 @@ export const List = {
   Table: () => {
     return (
       <div>
-        This is table
         <Rating />
       </div>
     );

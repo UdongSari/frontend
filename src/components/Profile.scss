@@ -1,0 +1,18 @@
+$container-width: 410px; 
+$container-height: 200px;
+$width : 200px;
+
+.Profile{
+  width: $width;
+  height: fit-content;
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  .name{
+    font-size: 17px;
+    text-align: center;
+  }
+}
