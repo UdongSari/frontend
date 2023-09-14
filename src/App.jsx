@@ -6,8 +6,7 @@ import Home from "../src/pages/Home";
 import Error from "../src/pages/Error";
 import Request from "../src/pages/Request";
 import Response from "../src/pages/Response";
-
-import NavBar from "../src/components/Navbar";
+import { NavBar } from "./components/Navbar";
 import RequestDetail from "../src/pages/RequestDetail";
 
 export default function App() {
