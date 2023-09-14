@@ -1,7 +1,7 @@
 @mixin place-center {
-    display: "flex";
-    justify-content: "center";
-    align-item: "center";
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 @mixin container-shadow {
