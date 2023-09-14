@@ -1,0 +1,51 @@
+@import "../styles/colors.scss";
+@import "../styles/util.scss";
+
+
+
+.Rating-wrapper{
+  width: 328px;
+display: flex;
+flex-direction: row;
+align-items: center;
+align-content: center;
+padding: 0px;
+gap: 5px;
+
+}
+.Rating__stars-container{
+  display: flex;
+  flex-direction: row;
+}
+
+.Rating__stars{
+  width: 158px;
+
+/* Rating__stars-text */
+&-text {
+  width: 57px;
+  text-align: center;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  color: #222222;
+}
+ .star{
+  font-size: 27px;
+  //color: #ED8A19;
+  color: $color-orange;
+ }
+
+
+}
+
+.Rating-text{
+  width: 71px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.Bstar{
+  font-size: 20px;
+  color: #222222;
+}
