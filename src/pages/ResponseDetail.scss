@@ -1,0 +1,44 @@
+@import "../styles/colors.scss";
+@import "../styles/util.scss";
+
+.ResponseDetail-wrapper{
+  @include place-center;
+  max-width: 1024px;
+  margin: 0 auto;
+}
+
+.ResponseDetail-container{
+  margin-top: 100px;
+  // @include container-shadow;
+}
+
+.input{
+box-sizing: border-box;
+
+position: relative;
+width: 843px;
+height: 61px;
+
+background: #FFFFFF;
+border: 1px solid #000000;
+border-radius: 5px;
+
+}
+
+.createPass-item-text{
+position: relative;
+width: 107.16px;
+height: 32px;
+
+padding-top: 30px;
+font-weight: 400;
+font-size: 16px;
+line-height: 24px;
+display: flex;
+align-items: center;
+
+color: #010101;
+
+
+
+}
