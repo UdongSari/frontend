@@ -6,22 +6,28 @@ import Home from "../src/pages/Home";
 import Error from "../src/pages/Error";
 import Request from "../src/pages/Request";
 import Response from "../src/pages/Response";
-import { NavBar } from "./components/Navbar";
+import Chat from "./pages/Chat";
 import RequestDetail from "../src/pages/RequestDetail";
 
-export default function App() {
-  return (
-    <>
-      <NavBar />
+import { NavBar } from "./components/Navbar";
+import { ChatHistory } from "./pages/ChatHistory";
 
-      <Routes>
-        <Route path="/photo/request" element={<Request />} />
-        <Route path="/photo/request/detail" element={<RequestDetail />} />
-        <Route path="/photo/response" element={<Response />} />
-        <Route path="/photo" element={<Photo />} />
-        <Route path="/" element={<Home />} />
-        <Route path="*" element={<Error />} />
-      </Routes>
-    </>
-  );
+export default function App() {
+    return (
+        <>
+            <NavBar />
+
+            <Routes>
+                <Route path="/photo/request" element={<Request />} />
+                <Route path="/photo/request/detail" element={<RequestDetail />} />
+                <Route path="/photo/response" element={<Response />} />
+                <Route path="/photo" element={<Photo />} />
+                <Route path="/chat" element={<Chat />}>
+                    <Route path=":id" element={<ChatHistory />}></Route>
+                </Route>
+                <Route path="/" element={<Home />} />
+                <Route path="*" element={<Error />} />
+            </Routes>
+        </>
+    );
 }
