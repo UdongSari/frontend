@@ -8,13 +8,9 @@
     left: 0;
     right: 0;
     width: 100%;
-    margin: 0 auto;
     z-index: 1000; /* 적절한 z-index 값으로 설정하세요 */
     margin: 0 auto;
-    @include wrapper-width;
-    // z-index: index 0;
     background-color: white;
-    
 }
 
 .nav-container {
