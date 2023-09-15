@@ -3,6 +3,7 @@
 
 .ResponseDetail-wrapper{
   @include place-center;
+  flex-direction: column;
   max-width: 1024px;
   margin: 0 auto;
 }
@@ -10,6 +11,20 @@
 .ResponseDetail-container{
   margin-top: 100px;
   // @include container-shadow;
+  margin-bottom: 100px;
+}
+
+.detailtext {
+  height: 32px;
+  width: 100%;
+  padding-top: 30px;
+}
+
+.date-select-field{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 20px;
 }
 
 .input{
@@ -27,7 +42,6 @@ border-radius: 5px;
 
 .createPass-item-text{
 position: relative;
-width: 107.16px;
 height: 32px;
 
 padding-top: 30px;
