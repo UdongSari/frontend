@@ -1,0 +1,38 @@
+@import "../styles/colors.scss";
+@import "../styles/util.scss";
+
+.chat-history-item {
+    display: flex;
+    width: auto;
+    height: 50px;
+
+    margin: 10px auto;
+    padding: 0px 20px;
+
+    span {
+        display: flex;
+        align-items: center;
+
+        height: 100%;
+
+        padding: 0px 30px;
+
+        border-radius: 30px;
+    }
+}
+
+.chat-recieve {
+    justify-content: flex-start;
+    span {
+        background-color: rgb(150, 150, 150);
+        color: white;
+    }
+}
+
+.chat-send {
+    justify-content: flex-end;
+    span {
+        background-color: $color-orange;
+        color: $color-white;
+    }
+}
