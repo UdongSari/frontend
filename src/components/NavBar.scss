@@ -14,7 +14,6 @@
     @include wrapper-width;
     // z-index: index 0;
     background-color: white;
-    
 }
 
 .nav-container {
@@ -39,5 +38,43 @@
                 color: $color-orange;
             }
         }
+    }
+}
+
+.nav-aside-container {
+    width: 300px;
+    height: calc(100vh - 80px);
+
+    border-right: 1px solid #b4b4b4;
+}
+
+.nav-aside-item {
+    display: flex;
+
+    width: 100%;
+    height: 90px;
+
+    .nav-aside-item__img {
+        padding: 10px;
+        @include place-center;
+        img {
+            object-fit: cover;
+
+            width: 60px;
+            height: 60px;
+
+            border-radius: 50%;
+
+            background-color: black;
+        }
+    }
+    .nav-aside-item__text {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        padding: 0px 10px;
+
+        height: 100%;
     }
 }
