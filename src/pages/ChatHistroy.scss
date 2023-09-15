@@ -1,0 +1,65 @@
+@import "../styles/colors.scss";
+@import "../styles/util.scss";
+
+.chat-history-section {
+    position: relative;
+    width: calc(1024px - 300px);
+}
+
+.chat-history-profile {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 90px;
+
+    background-color: white;
+}
+
+.chat-history-content {
+    height: calc(100vh - 120px);
+    padding-top: 100px;
+    padding-bottom: 40px;
+    box-sizing: border-box;
+    overflow: scroll;
+}
+
+.chat-history-controller {
+    position: absolute;
+    bottom: 0px;
+
+    display: flex;
+    align-items: center;
+
+    width: 724px;
+    height: 40px;
+    border-radius: 40px;
+
+    border: 2px solid $color-orange;
+    margin: 0px 10px;
+    padding: 0px 10px;
+
+    background-color: white;
+
+    input {
+        display: block;
+
+        width: 100%;
+        border: none;
+        outline: none;
+    }
+
+    button {
+        width: 35px;
+        height: 35px;
+
+        border: 0;
+        border-radius: 50%;
+
+        background-color: $color-orange;
+        color: white;
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+}
