@@ -1,13 +1,11 @@
 @import "../styles/colors.scss";
 @import "../styles/util.scss";
 
-$point-color: #00c52b;
-
 .article-container {
     box-sizing: border-box;
     width: 1024px;
 
-    margin: 50px auto;
+    margin: 25px auto;
     padding: 50px;
     border-radius: 20px;
     @include container-shadow;

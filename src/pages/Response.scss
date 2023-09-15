@@ -1,0 +1,29 @@
+@import "../styles/colors.scss";
+@import "../styles/util.scss";
+
+.controller-container {
+    width: 1024px;
+
+    margin: 10px auto;
+}
+
+.region-select-field {
+    display: flex;
+    gap: 10px;
+}
+
+.controller-title {
+    display: flex;
+    justify-content: space-between;
+
+    margin-top: 40px;
+
+    h1 {
+        font-size: 2rem;
+        color: $color-orange;
+
+        span {
+            padding: 0px 20px 0px 0px;
+        }
+    }
+}
