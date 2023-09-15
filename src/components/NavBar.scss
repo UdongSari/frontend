@@ -40,9 +40,11 @@
 
 .nav-aside-container {
     width: 300px;
-    height: calc(100vh - 80px);
+    height: calc(100vh - 120px);
 
-    border-right: 1px solid #b4b4b4;
+    padding: 0px 10px;
+
+    border-right: 1px solid rgb(180, 180, 180);
 }
 
 .nav-aside-item {
@@ -50,6 +52,11 @@
 
     width: 100%;
     height: 90px;
+    border-radius: 20px;
+
+    &:hover {
+        cursor: pointer;
+    }
 
     .nav-aside-item__img {
         padding: 10px;
