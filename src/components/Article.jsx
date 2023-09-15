@@ -1,5 +1,6 @@
 import { faLayerGroup, faLocationDot, faStar } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./Article.scss";
 
 import { Info } from "./Info";
@@ -8,9 +9,15 @@ import { Button, ButtonGroup } from "./Button";
 import Rating from "./Rating";
 
 export const Article = ({ type, color, rating, theme, location, imgUrls, description }) => {
+    const navigate = useNavigate();
     const [extend, setExtend] = useState(false);
+
     const handleClick = () => {
-        if (type === "찍어주세요" && description) setExtend((extend) => !extend);
+        if (type === "찍어주세요") {
+            setExtend((extend) => !extend);
+        } else if (type === "찍어드려요") {
+            navigate(description);
+        }
     };
 
     return (
