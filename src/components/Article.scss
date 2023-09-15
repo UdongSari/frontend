@@ -1,0 +1,54 @@
+@import "../styles/colors.scss";
+@import "../styles/util.scss";
+
+$point-color: #00c52b;
+
+.article-container {
+    box-sizing: border-box;
+    width: 1024px;
+
+    margin: 50px auto;
+    padding: 50px;
+    border-radius: 20px;
+    @include container-shadow;
+}
+
+.article-head {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+
+    .article-title {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        p {
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+        h1 {
+            font-size: 2.5rem;
+        }
+    }
+    .article-info {
+    }
+}
+
+.article-context {
+    margin: 20px 5px;
+}
+
+.article-img {
+    display: flex;
+    justify-content: space-around;
+
+    margin: 10px 0px;
+
+    img {
+        object-fit: cover;
+        width: 24%;
+        aspect-ratio: 1/1;
+
+        border-radius: 10px;
+    }
+}
