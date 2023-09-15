@@ -1,6 +1,12 @@
 @import "../styles/colors.scss";
 @import "../styles/util.scss";
 
+.btn-group {
+    display: flex;
+    gap: 10px;
+    margin: 10px 0px;
+}
+
 .btn-default {
     display: block;
 
@@ -54,4 +60,15 @@
 
     background-color: $color-white;
     color: $color-orange;
+}
+.btn-green-filled {
+    background-color: $color-green;
+    color: white;
+}
+
+.btn-green-stroke {
+    border: 2px solid $color-green;
+
+    background-color: $color-white;
+    color: $color-green;
 }
