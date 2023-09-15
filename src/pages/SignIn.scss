@@ -1,0 +1,119 @@
+
+@import "../styles/colors.scss";
+@import "../styles/util.scss";
+
+* {
+    
+}
+
+:root {
+    --header-height: 5rem;
+  }
+
+.Login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - var(--header-height));
+    flex-direction: column; /* 요소들을 세로 정렬 */
+    padding-left: 1.8rem;
+}
+
+.input-outer {
+    display: flex;
+    flex-direction: column; /* 요소들을 세로 정렬 */
+    justify-content: center;
+    width: 36rem;
+    height: auto;
+    padding-top: 1rem; padding-bottom: 1.5rem;
+
+    border: thin solid #c2c2c2; /* border-width border-style border-color */
+    border-radius: 0.9rem;
+    box-shadow: 0px 4px 5px #d6d6d6; /* 수평 수직 흐림정도 색상*/
+}
+
+/* Log In */
+.login-title {
+    color: $color-orange;
+    font-size: 2.2rem;
+    letter-spacing: -0.03rem; /* 글자 간격 좁게 */
+}
+
+/* 로그인 후 ~~! 문구 */
+.txt {
+    margin-top: 0.4rem;
+    font-size: 1.05rem;
+}
+
+.small-txt {
+    font-size: 0.9rem;
+    color: #595959;
+}
+
+#id, #pw {
+    width: 16rem;
+    height: 2rem;
+    padding-left: 0.5rem;
+
+    font-size: 1.05rem;
+}
+#id:focus, #pw:focus {
+    outline-color: $color-orange;
+}
+#id::placeholder, #pw::placeholder {
+    font-size: 1.05rem;
+}
+
+.input-container {
+    display: flex;
+    align-items: center;
+    flex-direction: column; /* 요소들을 세로 정렬 */
+    gap: 0.5rem; /* 요소 간 간격 */
+}
+
+.login-btn-container {
+    display: flex;
+    align-items: center;
+    flex-direction: column; /* 요소들을 세로 정렬 */
+}
+
+.login-btn {
+    width: 7rem; height: 2.6rem;
+    color: $color-orange;
+    font-size: 1.05rem;
+    background-color: white;
+    border: 2.5px solid $color-orange; /* border-width border-style border-color */
+    border-radius: 2rem;
+
+    cursor: pointer; /* 커서 올렸을 때 모양 변경 */
+
+    margin-bottom: 1.6rem; /* 버튼과 아래 글씨 사이 여백 */
+}
+.login-btn:hover {
+    background-color: $color-orange;
+    color: $color-white;
+    border: bold solid #d7e4ff;
+    
+}
+
+.link-style {
+    color: #595959;
+}
+
+@media screen and (max-width: 480px) {
+    .txt {
+        margin-top: 0.4rem;
+        font-size: 0.75rem;
+    }
+    .Login{
+       height: auto;
+        flex-direction: row;
+        padding: 20px 10px;
+    }
+    .login-title{
+      font-size: 2rem;
+    }
+    .input-outer{
+        align-items: center;
+    }
+}
