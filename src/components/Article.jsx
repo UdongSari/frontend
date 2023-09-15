@@ -8,7 +8,7 @@ import { HashTag } from "./HashTag";
 import { Button, ButtonGroup } from "./Button";
 import Rating from "./Rating";
 
-export const Article = ({ type, color, rating, theme, location, imgUrls, description }) => {
+export const Article = ({ type, rating, theme, location, imgUrls, description }) => {
     const navigate = useNavigate();
     const [extend, setExtend] = useState(false);
 
@@ -24,13 +24,12 @@ export const Article = ({ type, color, rating, theme, location, imgUrls, descrip
         <div className="article-container">
             <div className="article-head">
                 <div className="article-title">
-                    {color === "orange" && <p style={{ color: "#ff8a00" }}>{type}</p>}
-                    {color === "green" && <p style={{ color: "#00c52b" }}>{type}</p>}
+                    <p style={{ color: "#ff8a00" }}>{type}</p>
 
                     <h1>사진사 이름</h1>
                     <ButtonGroup>
-                        <Button type={`${color}-filled`}>연락하기</Button>
-                        <Button type={`${color}-stroke`} onClick={handleClick}>
+                        <Button type="orange-filled">연락하기</Button>
+                        <Button type="orange-stroke" onClick={handleClick}>
                             자세히보기
                         </Button>
                     </ButtonGroup>
