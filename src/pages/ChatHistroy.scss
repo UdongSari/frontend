@@ -1,0 +1,11 @@
+@import "../styles/colors.scss";
+@import "../styles/util.scss";
+
+.chat-history-section {
+    width: calc(1024px - 300px);
+}
+
+.chat-history-profile {
+    width: 100%;
+    height: 90px;
+}
