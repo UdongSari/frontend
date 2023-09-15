@@ -1,4 +1,5 @@
 import { faLayerGroup, faLocationDot, faStar } from "@fortawesome/free-solid-svg-icons";
+import { useState } from "react";
 import "./Article.scss";
 
 import { Info } from "./Info";
@@ -6,7 +7,12 @@ import { HashTag } from "./HashTag";
 import { Button, ButtonGroup } from "./Button";
 import Rating from "./Rating";
 
-export const Article = ({ type, color, rating, theme, location, imgUrls }) => {
+export const Article = ({ type, color, rating, theme, location, imgUrls, description }) => {
+    const [extend, setExtend] = useState(false);
+    const handleClick = () => {
+        if (type === "찍어주세요" && description) setExtend((extend) => !extend);
+    };
+
     return (
         <div className="article-container">
             <div className="article-head">
@@ -17,7 +23,9 @@ export const Article = ({ type, color, rating, theme, location, imgUrls }) => {
                     <h1>사진사 이름</h1>
                     <ButtonGroup>
                         <Button type={`${color}-filled`}>연락하기</Button>
-                        <Button type={`${color}-stroke`}>자세히보기</Button>
+                        <Button type={`${color}-stroke`} onClick={handleClick}>
+                            자세히보기
+                        </Button>
                     </ButtonGroup>
                 </div>
 
@@ -38,7 +46,7 @@ export const Article = ({ type, color, rating, theme, location, imgUrls }) => {
                 </div>
             </div>
 
-            <div className="article-context">asdf</div>
+            {extend && <div className="article-context">{description}</div>}
 
             <div className="article-img">
                 {imgUrls.map((element) => {
