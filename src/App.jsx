@@ -10,18 +10,18 @@ import { NavBar } from "./components/Navbar";
 import RequestDetail from "../src/pages/RequestDetail";
 
 export default function App() {
-  return (
-    <>
-      <NavBar />
+    return (
+        <>
+            <NavBar />
 
-      <Routes>
-        <Route path="/photo/request" element={<Request />} />
-        <Route path="/photo/request/detail" element={<RequestDetail />} />
-        <Route path="/photo/response" element={<Response />} />
-        <Route path="/photo" element={<Photo />} />
-        <Route path="/" element={<Home />} />
-        <Route path="*" element={<Error />} />
-      </Routes>
-    </>
-  );
+            <Routes>
+                <Route path="/photo/request" element={<Request />} />
+                <Route path="/photo/request/detail" element={<RequestDetail />} />
+                <Route path="/photo/response" element={<Response />} />
+                <Route path="/photo" element={<Photo />} />
+                <Route path="/" element={<Home />} />
+                <Route path="*" element={<Error />} />
+            </Routes>
+        </>
+    );
 }
