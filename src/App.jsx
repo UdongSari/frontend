@@ -9,6 +9,8 @@ import Response from "../src/pages/Response";
 import { NavBar } from "./components/Navbar";
 import RequestDetail from "../src/pages/RequestDetail";
 import ResponseDetail from "./pages/ResponseDetail";
+import SignIn from "./pages/SignIn";
+import SignUp from "./pages/SignUp";
 
 export default function App() {
   return (
@@ -16,6 +18,8 @@ export default function App() {
       <NavBar />
 
       <Routes>
+        <Route path="/auth/signin" element={<SignIn />} />
+        <Route path="/auth/signup" element={<SignUp />} />
         <Route path="/photo/request" element={<Request />} />
         <Route path="/photo/request/detail" element={<RequestDetail />} />
         <Route path="/photo/response" element={<Response />} />

@@ -25,7 +25,7 @@ export default function Request() {
 
   return (
     <>
-      <div className="controller-container">
+      <div className="controller-container" style={{ marginTop: "100px" }}>
         <Info icon={faSliders} title={"위치"}>
           <div className="region-select-field">
             <DropDown.Container get={si} set={setSi}>
