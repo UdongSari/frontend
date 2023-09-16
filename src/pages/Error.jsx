@@ -1,5 +1,7 @@
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
+import "./Error.scss";
+import { Button } from "../components/Button";
 
 const Error = () => {
   const navigate = useNavigate();
@@ -17,10 +19,17 @@ const Error = () => {
       className="styles.Container"
     >
       <div />
-      <h1 className="Error">404에러 페이지입니다.</h1>
-      <button className="Btn" onClick={onClickBack}>
-        메인페이지로 이동하기
-      </button>
+      <div className="Error-wrapper">
+        <h1 className="Error">404에러 페이지입니다.</h1>
+        <Button
+          type={"primary"}
+          width={"200px"}
+          height={"36px"}
+          onClick={onClickBack}
+        >
+          메인페이지로 이동하기
+        </Button>
+      </div>
     </motion.div>
   );
 };

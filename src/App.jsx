@@ -26,7 +26,6 @@ export default function App() {
                 <Route path="/photo/request" element={<Request />} />
                 <Route path="/photo/request/detail" element={<RequestDetail />} />
                 <Route path="/photo/response" element={<Response />} />
-                <Route path="/photo" element={<Photo />} />
                 <Route path="/chat" element={<Chat />}>
                     <Route path=":id" element={<ChatHistory />}></Route>
                 </Route>
