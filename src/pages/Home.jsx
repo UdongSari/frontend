@@ -5,21 +5,23 @@ import { motion } from "framer-motion";
 import { HashTag } from "../components/HashTag";
 
 export default function Home() {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
-    const onClickBack = () => {
-        navigate("/");
-    };
+  const onClickBack = () => {
+    navigate("/");
+  };
 
-    const [selected, setSelected] = useState([]);
+  const [selected, setSelected] = useState([]);
 
-    return (
-        <>
-            <HashTag.Group interactable get={selected} set={setSelected}>
-                <HashTag.Item active>테마1</HashTag.Item>
-                <HashTag.Item>테마2</HashTag.Item>
-                <HashTag.Item>테마3</HashTag.Item>
-            </HashTag.Group>
-        </>
-    );
+  return (
+    <>
+      <div className="home-wrapper">
+        <HashTag.Group interactable get={selected} set={setSelected}>
+          <HashTag.Item active>테마1</HashTag.Item>
+          <HashTag.Item>테마2</HashTag.Item>
+          <HashTag.Item>테마3</HashTag.Item>
+        </HashTag.Group>
+      </div>
+    </>
+  );
 }

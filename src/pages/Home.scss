@@ -1,0 +1,6 @@
+@import "../styles/colors.scss";
+@import "../styles/util.scss";
+
+.home-wrapper{
+  @include place-center;
+}
