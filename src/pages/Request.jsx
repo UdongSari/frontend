@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { faCamera, faFilter, faPhotoFilm, faSliders } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -14,7 +14,6 @@ import "./Request.scss";
 export default function Request() {
     const [si, setSi] = useState({ index: -1, value: "시" });
     const [gu, setGu] = useState({ index: -1, value: "군 / 구" });
-    const [dong, setDong] = useState({ index: -1, value: "동" });
 
     const [theme, setTheme] = useState({ index: -1 });
     const [rating, setRating] = useState();
@@ -44,10 +43,6 @@ export default function Request() {
                             <DropDown.Item>달서구</DropDown.Item>
                             <DropDown.Item>달성군</DropDown.Item>
                             <DropDown.Item>군위군</DropDown.Item>
-                        </DropDown.Container>
-
-                        <DropDown.Container get={dong} set={setDong}>
-                            <DropDown.Item>동</DropDown.Item>
                         </DropDown.Container>
                     </div>
                 </Info>
@@ -84,7 +79,6 @@ export default function Request() {
                     </DropDown.Container>
                 </div>
             </div>
-
 
             <Article
                 type="찍어주세요"

@@ -72,7 +72,7 @@ export const FacebookBtn = ({ link }) => {
 export const ButtonAdd = ({ link }) => {
     const navigate = useNavigate();
     return (
-        <button className="btn-circle btn-add" onClick={navigate(link)}>
+        <button className="btn-circle btn-add" onClick={() => navigate(link)}>
             <FontAwesomeIcon icon={faPlus} />
         </button>
     );
