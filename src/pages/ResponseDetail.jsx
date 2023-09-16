@@ -10,8 +10,10 @@ import moment from "moment";
 import { IMAGE_API } from "../utils/host";
 import { useDispatch } from "react-redux";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useCookies } from "react-cookie";
 import { HOST } from "../utils/host";
+import { faPhotoFilm } from "@fortawesome/free-solid-svg-icons";
 
 function InputForm({ ref, label, placeholder }) {
     return (
@@ -102,7 +104,7 @@ export default function ResponseDetail() {
             });
         }
 
-        navigate("/photo/response");
+        navigate("/photo/request");
     };
 
     // 날짜를 원하는 형식으로 포맷하는 함수
@@ -114,6 +116,13 @@ export default function ResponseDetail() {
         <>
             <div className="ResponseDetail-wrapper">
                 <div className="ResponseDetail-container">
+                    <h1 className="new-title">
+                        <span>
+                            <FontAwesomeIcon icon={faPhotoFilm} />
+                        </span>
+                        <span>찍어주세요</span>
+                    </h1>
+
                     <span className="region-select-field detailtext">지역</span>
                     <div className="region-select-field">
                         <DropDown.Container get={si} set={setSi}>

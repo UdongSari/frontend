@@ -1,4 +1,5 @@
 import React, { useRef, useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link, useNavigate } from "react-router-dom";
 import "./ResponseDetail.scss";
 import { HashTag } from "../components/HashTag";
@@ -12,21 +13,13 @@ import { useDispatch } from "react-redux";
 
 import { useCookies } from "react-cookie";
 import { HOST } from "../utils/host";
-
-function InputForm({ ref, label, placeholder }) {
-    return (
-        <div>
-            <span className="createPass-item-text">{label}</span>
-            <input ref={ref} className="input" type="text" placeholder={placeholder} />
-        </div>
-    );
-}
+import { faCameraRetro } from "@fortawesome/free-solid-svg-icons";
 
 export default function NewPortFolio() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
-    const priceRef = useRef();
+    const snsRef = useRef();
     const introductionRef = useRef();
 
     const [cookies, setCookie, removeCookie] = useCookies(["token"]);
@@ -35,10 +28,10 @@ export default function NewPortFolio() {
 
     const [si, setSi] = useState({ index: -1, value: "시" });
     const [gu, setGu] = useState({ index: -1, value: "군 / 구" });
-    const [start, onStartChange] = useState(new Date());
-    const [end, onEndChange] = useState(new Date());
+
     const [theme, setTheme] = useState({ index: -1, value: "테마" });
     const [imageURL, setImageURL] = useState([]);
+    const [imageArr, setImageArr] = useState([]);
 
     const onImageUpload = (event) => {
         fetch(IMAGE_API)
@@ -75,29 +68,28 @@ export default function NewPortFolio() {
             alert("다시 로그인 해 주세요");
             navigate("/auth/login");
         } else {
-            fetch(`${HOST}/api/v1/user/post/create`, {
+            fetch(`${HOST}/api/v1/user/grapher/create`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                     Authorization: `Bearer ${cookies.token}`,
                 },
                 body: JSON.stringify({
+                    snsAddress: snsRef.current.value,
                     intro: introductionRef.current.value,
-                    price: Number(priceRef.current.value),
-                    portfolioList: imageURL,
-                    regionList: [
+                    stars: 5,
+                    portfolios: imageURL,
+                    themas: [
+                        {
+                            themaName: theme.value,
+                        },
+                    ],
+                    regions: [
                         {
                             si: si.value,
                             gu: gu.value,
                         },
                     ],
-                    themaList: [
-                        {
-                            themaName: theme.value,
-                        },
-                    ],
-                    startDate: start.toString(),
-                    endDate: end.toString(),
                 }),
             });
         }
@@ -114,6 +106,13 @@ export default function NewPortFolio() {
         <>
             <div className="ResponseDetail-wrapper">
                 <div className="ResponseDetail-container">
+                    <h1 className="new-title">
+                        <span>
+                            <FontAwesomeIcon icon={faCameraRetro} />
+                        </span>
+                        <span>찍어드려요</span>
+                    </h1>
+
                     <span className="region-select-field detailtext">지역</span>
                     <div className="region-select-field">
                         <DropDown.Container get={si} set={setSi}>
@@ -148,42 +147,32 @@ export default function NewPortFolio() {
                         </DropDown.Container>
                     </div>
 
-                    <span className="createPass-item-text">금액</span>
-                    <input ref={priceRef} className="input" type="text" placeholder="값을 입력하세요" />
+                    <span className="createPass-item-text">SNS 주소</span>
+                    <input ref={snsRef} className="input" type="text" placeholder="값을 입력하세요" />
 
-                    <span className="createPass-item-text">기타 요청사항</span>
+                    <span className="createPass-item-text">소개글</span>
                     <input ref={introductionRef} className="input" type="text" placeholder="값을 입력하세요" />
 
                     <span className="region-select-field detailtext">샘플 이미지 업로드</span>
                     <div className="image-upload-ui">
-                        <input
-                            onChange={onImageUpload}
-                            ref={(el) => (fileInput.current[0] = el)}
-                            type="file"
-                            className="input__image"
-                            accept="image/*"
-                        />
-                        <input
-                            onChange={onImageUpload}
-                            ref={(el) => (fileInput.current[1] = el)}
-                            type="file"
-                            className="input__image"
-                            accept="image/*"
-                        />
-                        <input
-                            onChange={onImageUpload}
-                            ref={(el) => (fileInput.current[2] = el)}
-                            type="file"
-                            className="input__image"
-                            accept="image/*"
-                        />
-                        <input
-                            onChange={onImageUpload}
-                            ref={(el) => (fileInput.current[3] = el)}
-                            type="file"
-                            className="input__image"
-                            accept="image/*"
-                        />
+                        <button
+                            onClick={() => {
+                                setImageArr([...imageArr, 0]);
+                            }}>
+                            추가하기
+                        </button>
+
+                        {imageArr.map((element, index) => {
+                            return (
+                                <input
+                                    onChange={onImageUpload}
+                                    ref={(el) => (fileInput.current[index] = el)}
+                                    type="file"
+                                    className="input__image"
+                                    accept="image/*"
+                                />
+                            );
+                        })}
                     </div>
                 </div>
 

@@ -18,17 +18,18 @@ import { NavBar } from "./components/Navbar";
 import { ChatHistory } from "./pages/ChatHistory";
 
 export default function App() {
-  return (
-    <>
-      <NavBar />
+    return (
+        <>
+            <NavBar />
 
             <Routes>
                 <Route path="/mypage" element={<MyPage />}></Route>
                 <Route path="/portfolio/create" element={<NewPortFolio />} />
+
                 <Route path="/auth/signin" element={<SignIn />} />
                 <Route path="/auth/signup" element={<SignUp />} />
                 <Route path="/photo/request" element={<Request />} />
-                <Route path="/photo/request/detail" element={<RequestDetail />} />
+                <Route path="/photo/request/detail/:id" element={<RequestDetail />} />
                 <Route path="/photo/response" element={<Response />} />
                 <Route path="/photo/response/detail" element={<ResponseDetail />}></Route>
                 <Route path="/chat" element={<Chat />}>

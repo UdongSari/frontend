@@ -46,8 +46,8 @@ export const Article = ({ type, name, rating, theme, location, imgUrls, descript
                             </Info>
                             <Info title="테마" icon={faLayerGroup}>
                                 <HashTag.Group>
-                                    {theme.map((element) => {
-                                        return <HashTag.Item>{element}</HashTag.Item>;
+                                    {theme.map((element, index) => {
+                                        return <HashTag.Item key={index}>{element}</HashTag.Item>;
                                     })}
                                 </HashTag.Group>
                             </Info>
@@ -82,8 +82,8 @@ export const Article = ({ type, name, rating, theme, location, imgUrls, descript
             {extend && <div className="article-context">{description}</div>}
 
             <div className="article-img">
-                {imgUrls.map((element) => {
-                    return <img src={element}></img>;
+                {imgUrls.map((element, index) => {
+                    return <img src={element} key={index}></img>;
                 })}
             </div>
         </div>
