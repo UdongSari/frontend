@@ -36,7 +36,7 @@ export default function Request() {
     useEffect(() => {
         if (!cookies.token) {
             alert("다시 로그인 해 주세요");
-            navigate("/auth/login");
+            navigate("/auth/signin");
         } else {
             if (gu.value === "군 / 구") {
                 dispatch(RequestFetchThunk(si.value, null, cookies.token));

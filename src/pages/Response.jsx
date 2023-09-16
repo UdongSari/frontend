@@ -16,8 +16,10 @@ import { useCookies } from "react-cookie";
 
 import { ResponseFetchThunk } from "../store/response-slice";
 import { Loader } from "../components/Loader";
+import { useNavigate } from "react-router-dom";
 
 export default function Response() {
+    const navigate = useNavigate();
     const dispatch = useDispatch();
 
     const [cookies, setCookie, removeCookie] = useCookies(["token"]);
@@ -34,7 +36,7 @@ export default function Response() {
     useEffect(() => {
         if (!cookies.token) {
             alert("다시 로그인 해 주세요");
-            navigate("/auth/login");
+            navigate("/auth/signin");
         } else {
             if (gu.value === "군 / 구") {
                 dispatch(ResponseFetchThunk(si.value, null, cookies.token));
