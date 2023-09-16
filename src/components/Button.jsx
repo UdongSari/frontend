@@ -1,6 +1,8 @@
 import "./Button.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInstagram, faFacebook } from "@fortawesome/free-brands-svg-icons";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import { useNavigate } from "react-router-dom";
 
 export const ButtonGroup = ({ children, ...rest }) => {
     return (
@@ -64,5 +66,14 @@ export const FacebookBtn = ({ link }) => {
         <a className="btn-primary btn-social btn-fb" target="_blank" rel="noreferrer noopener" href={link}>
             <FontAwesomeIcon icon={faFacebook} />
         </a>
+    );
+};
+
+export const ButtonAdd = ({ link }) => {
+    const navigate = useNavigate();
+    return (
+        <button className="btn-circle btn-add" onClick={navigate(link)}>
+            <FontAwesomeIcon icon={faPlus} />
+        </button>
     );
 };
