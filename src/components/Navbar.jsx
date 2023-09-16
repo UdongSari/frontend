@@ -39,7 +39,7 @@ export const NavBar = ({ login }) => {
                     </li>
                 </ul>
             </nav>
-            <div style={{ marginTop: "100px" }} />
+            <div style={{ marginTop: "80px" }} />
         </>
     );
 };
@@ -62,4 +62,4 @@ export const NavAside = {
             </div>
         );
     },
-}
+};

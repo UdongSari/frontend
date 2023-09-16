@@ -1,27 +1,37 @@
 import React, { useEffect } from "react";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { motion } from "framer-motion";
-import { HashTag } from "../components/HashTag";
+import { Button } from "../components/Button";
+
+
+import heroImage from "../assets/hero.png";
+
+import "./Home.scss";
 
 export default function Home() {
-  const navigate = useNavigate();
+    return (
+        <main className="home-page">
+            <section className="hero-section-wrapper">
+                <div className="hero-section-container">
+                    <div className="hero-section-item">
+                        <h2>
+                            <span>우리 동네 사진작가 리스트</span>
+                        </h2>
 
-  const onClickBack = () => {
-    navigate("/");
-  };
+                        <h1>
+                            <span>당신 근처의</span>
+                            <span>사진 작가 리스트</span>
+                        </h1>
 
-  const [selected, setSelected] = useState([]);
+                        <p>
+                            <span>동네라서 가능한 모든 것</span>
+                            <span>당근에서 가까운 이웃과 함께해요</span>
+                        </p>
+                    </div>
+                    <div className="hero-section-item">
+                        <img src={heroImage} alt="" />
+                    </div>
+                </div>
+            </section>
+        </main>
+    );
 
-  return (
-    <>
-      <div className="home-wrapper">
-        <HashTag.Group interactable get={selected} set={setSelected}>
-          <HashTag.Item active>테마1</HashTag.Item>
-          <HashTag.Item>테마2</HashTag.Item>
-          <HashTag.Item>테마3</HashTag.Item>
-        </HashTag.Group>
-      </div>
-    </>
-  );
 }
