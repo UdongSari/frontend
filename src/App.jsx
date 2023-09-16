@@ -18,9 +18,9 @@ import { NavBar } from "./components/Navbar";
 import { ChatHistory } from "./pages/ChatHistory";
 
 export default function App() {
-    return (
-        <>
-            <NavBar />
+  return (
+    <>
+      <NavBar />
 
             <Routes>
                 <Route path="/mypage" element={<MyPage />}></Route>
