@@ -29,6 +29,7 @@
         }
     }
     .article-info {
+        width: 300px;
     }
 }
 
@@ -39,7 +40,7 @@
 
 .article-img {
     display: flex;
-    justify-content: space-around;
+    justify-content: flex-start;
 
     margin: 10px 0px;
 

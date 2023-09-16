@@ -2,16 +2,20 @@ import "./SignIn.scss";
 import { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-// import { setLogin, setLogout, counter } from "../modules/counter";
+import { useCookies } from "react-cookie";
 
 import { SignInThunk } from "../store/auth-slice";
 
 export default function SignIn() {
-  const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
 
-  const navigate = useNavigate();
-  const [idValue, setIdValue] = useState("");
-  const [pwValue, setPwValue] = useState("");
+    const { status, token } = useSelector((state) => state.auth.signin);
+    const [cookies, setCookie, removeCookie] = useCookies(["token"]);
+
+    const [idValue, setIdValue] = useState("");
+    const [pwValue, setPwValue] = useState("");
+
 
   const handleIdChange = (event) => {
     const newValue = event.target.value;
@@ -24,30 +28,33 @@ export default function SignIn() {
     console.log("PW:" + event.target.value);
   };
 
-  const handleLogin = (event) => {
-    event.preventDefault(); // 이벤트의 기본 동작(새로고침) 막기
-    dispatch(SignInThunk({ id: idValue, pw: pwValue }));
-  };
+    const handleLogin = (event) => {
+        event.preventDefault();
+        dispatch(SignInThunk(idValue, pwValue));
+    };
 
-  return (
-    <div className="Login">
-      <form className="input-outer" style={{ paddingLeft: "1.8rem" }}>
-        <TextBlock />
-        <br />
-        <br />
-        <Input
-          handleIdChange={handleIdChange}
-          handlePwChange={handlePwChange}
-        />
-        <br />
-        <LoginBtn
-          idValue={idValue}
-          pwValue={pwValue}
-          handleLogin={handleLogin}
-        />
-      </form>
-    </div>
-  );
+    useEffect(() => {
+        if (status === "success") {
+            setCookie("token", token);
+            navigate("/");
+        } else if (status === "failed") {
+            alert("아이디 혹은 비밀번호가 일치하지 않습니다");
+            navigate("/auth/signin");
+        }
+    }, [status, token]);
+
+    return (
+        <div className="Login">
+            <form className="input-outer" style={{ paddingLeft: "1.8rem" }}>
+                <TextBlock />
+                <br />
+                <br />
+                <Input handleIdChange={handleIdChange} handlePwChange={handlePwChange} />
+                <br />
+                <LoginBtn idValue={idValue} pwValue={pwValue} handleLogin={handleLogin} />
+            </form>
+        </div>
+    );
 }
 
 const Input = ({ handleIdChange, handlePwChange }) => {

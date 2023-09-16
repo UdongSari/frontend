@@ -1,59 +1,64 @@
 @import "../styles/colors.scss";
 @import "../styles/util.scss";
 
-.ResponseDetail-wrapper{
-  @include place-center;
-  flex-direction: column;
-  max-width: 1024px;
-  margin: 0 auto;
-  z-index: -1;
+.ResponseDetail-wrapper {
+    @include place-center;
+    flex-direction: column;
+    max-width: 1024px;
+    margin: 0 auto;
+    z-index: -1;
+
+    margin-bottom: 100px;
 }
 
-.ResponseDetail-container{
-  margin-top: 100px;
-  // @include container-shadow;
-  margin-bottom: 100px;
+.ResponseDetail-container {
+    // @include container-shadow;
+    margin-bottom: 50px;
 }
 
 .detailtext {
-  height: 32px;
-  width: 100%;
-  padding-top: 30px;
+    height: 32px;
+    width: 100%;
+    padding-top: 30px;
 }
 
-.date-select-field{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  gap: 20px;
+.date-select-field {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 20px;
 }
 
-.input{
-box-sizing: border-box;
+.input {
+    box-sizing: border-box;
 
-position: relative;
-width: 843px;
-height: 61px;
+    position: relative;
+    width: 100%;
+    height: 61px;
 
-background: #FFFFFF;
-border: 1px solid #000000;
-border-radius: 5px;
-
+    background: #ffffff;
+    padding: 0px 20px;
+    border: 1px solid #000000;
+    border-radius: 5px;
 }
 
-.createPass-item-text{
-position: relative;
-height: 32px;
+.createPass-item-text {
+    position: relative;
+    height: 32px;
 
-padding-top: 30px;
-font-weight: 400;
-font-size: 16px;
-line-height: 24px;
-display: flex;
-align-items: center;
+    padding-top: 30px;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    display: flex;
+    align-items: center;
 
-color: #010101;
+    color: #010101;
+}
 
-
-
+.image-upload-ui {
+    input {
+        display: block;
+        padding: 5px 0px;
+    }
 }

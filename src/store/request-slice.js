@@ -17,14 +17,30 @@ export const RequestSlice = createSlice({
   },
 });
 
-export const RequestFetchThunk = (si, gu) => {
-  return async (dispatch) => {
-    dispatch(
-      RequestActions.setState({
-        status: "fetching",
-        data: null,
-      })
-    );
+export const RequestFetchThunk = (si, gu, token) => {
+    return async (dispatch) => {
+        dispatch(
+            RequestActions.setState({
+                status: "fetching",
+                data: null,
+            })
+        );
+
+        const request = async () => {
+            const response = await fetch(`${HOST}/api/v1/user/post/search`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`,
+                },
+                body: JSON.stringify({
+                    si: si,
+                    gu: gu,
+                }),
+            });
+            if (!response.ok) throw new Error("");
+            return response.json();
+        };
 
     const request = async () => {
       const response = await fetch(`${HOST}/api/v1/user/post/search`, {

@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { useEffect } from "react";
 import { HOST } from "../utils/host";
 
 export const AuthSlice = createSlice({
@@ -35,7 +34,7 @@ export const SignUpThunk = (username, password, name, age, phone) => {
     );
 
     const request = async () => {
-      const response = await fetch(`${HOST}/api/v1/signup`, {
+      const response = await fetch(`/api/v1/signup`, {
         method: "POST",
         // credentials: "include",
         headers: {

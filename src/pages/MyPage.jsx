@@ -1,9 +1,10 @@
 import { Profile } from "../components/Profile";
-import "./RequestDetail.scss";
 import Grid from "../components/Grid";
 import { motion } from "framer-motion";
 
-export default function RequestDetail() {
+import "./MyPage.scss";
+
+export default function MyPage() {
     const dataItems = [
         {
             imagePath: "이미지 경로 1",
@@ -19,21 +20,6 @@ export default function RequestDetail() {
             imagePath: "이미지 경로 3",
             imageTitle: "제목 3",
             imageDescription: "설명 3",
-        },
-        {
-            imagePath: "이미지 경로 4",
-            imageTitle: "제목 4",
-            imageDescription: "설명 4",
-        },
-        {
-            imagePath: "이미지 경로 5",
-            imageTitle: "제목 5",
-            imageDescription: "설명 5",
-        },
-        {
-            imagePath: "이미지 경로 6",
-            imageTitle: "제목 6",
-            imageDescription: "설명 6",
         },
         // 나머지 데이터 아이템들도 추가하세요.
     ];

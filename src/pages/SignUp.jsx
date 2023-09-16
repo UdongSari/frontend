@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import "./SignIn.scss";
 import { Link, useNavigate } from "react-router-dom";
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { SignUpThunk } from "../store/auth-slice";
 
 const TextBlock = () => {
@@ -53,6 +53,7 @@ const Input = () => {
 const LoginBtn = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const { status } = useSelector((state) => state.auth.signup);
 
     const handleSignup = (event) => {
         event.preventDefault(); // 이벤트의 기본 동작(새로고침) 막기
@@ -65,6 +66,10 @@ const LoginBtn = () => {
 
         dispatch(SignUpThunk(idValue, pwValue, nameValue, ageValue, phoneValue));
     };
+
+    useEffect(() => {
+        if (status === "success") navigate("/");
+    }, [status]);
 
     return (
         <div className="login-btn-container">
