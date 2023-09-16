@@ -15,8 +15,8 @@ export default function Request() {
     const [si, setSi] = useState({ index: -1, value: "시" });
     const [gu, setGu] = useState({ index: -1, value: "군 / 구" });
 
-    const [theme, setTheme] = useState({ index: -1 });
-    const [rating, setRating] = useState();
+    const [theme, setTheme] = useState({ index: -1, value: "" });
+    const [rating, setRating] = useState({ index: -1, value: "" });
 
     const [sort, setSort] = useState({ index: -1, value: "정렬" });
 

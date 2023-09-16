@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { HOST } from "../utils/host";
 
 export const RequestSlice = createSlice({
     name: "request-slice",
@@ -16,7 +17,7 @@ export const RequestSlice = createSlice({
     },
 });
 
-export const RequestFetchThunk = () => {
+export const RequestFetchThunk = (si, gu) => {
     return async (dispatch) => {
         dispatch(
             RequestActions.setState({
@@ -26,13 +27,22 @@ export const RequestFetchThunk = () => {
         );
 
         const request = async () => {
-            const response = await fetch();
+            const response = await fetch(`${HOST}/api/v1/user/post/search`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    si: si,
+                    gu: gu,
+                }),
+            });
             if (!response.ok) throw new Error("");
             return response.json();
         };
 
         try {
-            const data = await request(`${process.env.REACT_APP_HOST}/api/v1/user/post/search`);
+            const data = await request();
             dispatch(
                 RequestActions.setState({
                     status: "success",
