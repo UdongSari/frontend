@@ -22,7 +22,7 @@ function InputForm({ ref, label, placeholder }) {
     );
 }
 
-export default function ResponseDetail() {
+export default function NewPortFolio() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
@@ -146,17 +146,6 @@ export default function ResponseDetail() {
                             <DropDown.Item>브랜드</DropDown.Item>
                             <DropDown.Item>풍경</DropDown.Item>
                         </DropDown.Container>
-                    </div>
-
-                    <span className="region-select-field detailtext">날짜</span>
-                    <div className="date-select-field">
-                        <Calendar onChange={onStartChange} value={start} />
-                        <Calendar onChange={onEndChange} value={end} />
-                    </div>
-                    <div className="text-gray-500 mt-4">
-                        <p>
-                            시작 날짜: {formatDateToCustomFormat(start)} ~ 종료 날짜: {formatDateToCustomFormat(end)}{" "}
-                        </p>
                     </div>
 
                     <span className="createPass-item-text">금액</span>

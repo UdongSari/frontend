@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { HOST } from "../utils/host";
 
 export const ResponseSlice = createSlice({
     name: "response-slice",
@@ -16,7 +17,7 @@ export const ResponseSlice = createSlice({
     },
 });
 
-export const ResponseFetchThunk = () => {
+export const ResponseFetchThunk = (si, gu, token) => {
     return async (dispatch) => {
         dispatch(
             ResponseAction.setState({
@@ -26,12 +27,15 @@ export const ResponseFetchThunk = () => {
         );
 
         const request = async () => {
-            const response = await fetch(`${process.env.REACT_APP_HOST}/api/v1/user/grapher/search`, {
+            const response = await fetch(`${HOST}/api/v1/user/grapher/search`, {
                 method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`,
+                },
                 body: JSON.stringify({
-                    si: null,
-                    gu: null,
-                    dong: null,
+                    si: si,
+                    gu: gu,
                 }),
             });
             if (!response.ok) throw new Error("");
