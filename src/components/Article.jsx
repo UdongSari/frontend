@@ -1,4 +1,4 @@
-import { faLayerGroup, faLocationDot, faStar } from "@fortawesome/free-solid-svg-icons";
+import { faCoins, faLayerGroup, faLocationDot, faStar } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Article.scss";
@@ -8,7 +8,10 @@ import { HashTag } from "./HashTag";
 import { Button, ButtonGroup } from "./Button";
 import Rating from "./Rating";
 
-export const Article = ({ type, rating, theme, location, imgUrls, description }) => {
+// 찍어주세요 props : type, theme, location, imgurls, description, price
+// 찍어드려요 props : type, rating, theme, location, imgurls, description
+
+export const Article = ({ type, rating, theme, location, imgUrls, description, price }) => {
     const navigate = useNavigate();
     const [extend, setExtend] = useState(false);
 
@@ -36,19 +39,43 @@ export const Article = ({ type, rating, theme, location, imgUrls, description })
                 </div>
 
                 <div className="article-info">
-                    <Info title="별점" icon={faStar}>
-                        <Rating number={rating} />
-                    </Info>
-                    <Info title="테마" icon={faLayerGroup}>
-                        <HashTag.Group>
-                            {theme.map((element) => {
-                                return <HashTag.Item>{element}</HashTag.Item>;
-                            })}
-                        </HashTag.Group>
-                    </Info>
-                    <Info title="지역" icon={faLocationDot}>
-                        {location}
-                    </Info>
+                    {type === "찍어드려요" && (
+                        <>
+                            <Info title="별점" icon={faStar}>
+                                <Rating number={rating} />
+                            </Info>
+                            <Info title="테마" icon={faLayerGroup}>
+                                <HashTag.Group>
+                                    {theme.map((element) => {
+                                        return <HashTag.Item>{element}</HashTag.Item>;
+                                    })}
+                                </HashTag.Group>
+                            </Info>
+                            <Info title="지역" icon={faLocationDot}>
+                                {location}
+                            </Info>
+                        </>
+                    )}
+
+                    {type === "찍어주세요" && (
+                        <>
+                            <Info title="가격" icon={faCoins}>
+                                {price}
+                            </Info>
+
+                            <Info title="테마" icon={faLayerGroup}>
+                                <HashTag.Group>
+                                    {theme.map((element) => {
+                                        return <HashTag.Item>{element}</HashTag.Item>;
+                                    })}
+                                </HashTag.Group>
+                            </Info>
+
+                            <Info title="지역" icon={faLocationDot}>
+                                {location}
+                            </Info>
+                        </>
+                    )}
                 </div>
             </div>
 
