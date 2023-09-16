@@ -11,8 +11,16 @@
     margin-bottom: 100px;
 }
 
+.new-title {
+    span {
+        padding-right: 10px;
+    }
+    color: $color-orange;
+}
+
 .ResponseDetail-container {
     // @include container-shadow;
+    width: 750px;
     margin-bottom: 50px;
 }
 

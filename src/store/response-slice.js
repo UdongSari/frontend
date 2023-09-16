@@ -44,15 +44,20 @@ export const ResponseFetchThunk = (si, gu, token) => {
 
         try {
             const data = await request();
-            ResponseAction.setState({
-                status: "success",
-                data: data,
-            });
+            console.log(data);
+            dispatch(
+                ResponseAction.setState({
+                    status: "success",
+                    data: data,
+                })
+            );
         } catch (err) {
-            ResponseAction.setState({
-                status: "failed",
-                data: null,
-            });
+            dispatch(
+                ResponseAction.setState({
+                    status: "failed",
+                    data: null,
+                })
+            );
         }
     };
 };

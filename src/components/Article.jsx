@@ -60,6 +60,7 @@ export const Article = ({
     return 1;
   };
 
+
   return (
     <div className="article-container">
       <div className="article-head">
@@ -110,11 +111,19 @@ export const Article = ({
                 </HashTag.Group>
               </Info>
 
+
               <Info title="지역" icon={faLocationDot}>
                 {location}
               </Info>
             </>
           )}
+
+            <div className="article-img">
+                {imgUrls.map((element, index) => {
+                    return <img src={element} key={index}></img>;
+                })}
+            </div>
+
         </div>
       </div>
 

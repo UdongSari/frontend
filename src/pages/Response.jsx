@@ -9,10 +9,13 @@ import { Info } from "../components/Info";
 import { DropDown } from "../components/Dropdown";
 import { HashTag } from "../components/HashTag";
 import Rating from "../components/Rating";
+import { ButtonAdd } from "../components/Button";
+
 import { useDispatch, useSelector } from "react-redux";
 import { useCookies } from "react-cookie";
 
 import { ResponseFetchThunk } from "../store/response-slice";
+import { Loader } from "../components/Loader";
 
 export default function Response() {
     const dispatch = useDispatch();
@@ -22,10 +25,8 @@ export default function Response() {
     // Filter Dropdowns
     const [si, setSi] = useState({ index: 0, value: "대구광역시" });
     const [gu, setGu] = useState({ index: -1, value: "군 / 구" });
-
-    const [theme, setTheme] = useState({ index: -1 });
+    const [theme, setTheme] = useState({ index: -1, value: "테마 선택" });
     const [rating, setRating] = useState();
-
     const [sort, setSort] = useState({ index: -1, value: "정렬" });
 
     const { status, data } = useSelector((state) => state.response);
@@ -35,12 +36,20 @@ export default function Response() {
             alert("다시 로그인 해 주세요");
             navigate("/auth/login");
         } else {
-            dispatch(ResponseFetchThunk(si.value, gu.value, cookies.token));
+            if (gu.value === "군 / 구") {
+                dispatch(ResponseFetchThunk(si.value, null, cookies.token));
+            } else {
+                dispatch(ResponseFetchThunk(si.value, gu.value, cookies.token));
+            }
         }
     }, [si, gu]);
 
     return (
         <>
+            <div className="btn-add-container">
+                <ButtonAdd link="/portfolio/create"></ButtonAdd>
+            </div>
+
             <div className="controller-container" style={{ marginTop: "100px" }}>
                 <Info icon={faSliders} title={"위치"}>
                     <div className="region-select-field">
@@ -63,12 +72,17 @@ export default function Response() {
                 </Info>
 
                 <Info icon={faSliders} title={"테마"}>
-                    <HashTag.Group>
-                        <HashTag.Item>인물</HashTag.Item>
-                        <HashTag.Item>풍경</HashTag.Item>
-                        <HashTag.Item>스포츠</HashTag.Item>
-                        <HashTag.Item>스냅</HashTag.Item>
-                    </HashTag.Group>
+                    <DropDown.Container get={theme} set={setTheme}>
+                        <DropDown.Item>피팅모델</DropDown.Item>
+                        <DropDown.Item>댄서</DropDown.Item>
+                        <DropDown.Item>배우</DropDown.Item>
+                        <DropDown.Item>프로필</DropDown.Item>
+                        <DropDown.Item>매거진</DropDown.Item>
+                        <DropDown.Item>필라테스</DropDown.Item>
+                        <DropDown.Item>스냅사진</DropDown.Item>
+                        <DropDown.Item>브랜드</DropDown.Item>
+                        <DropDown.Item>풍경</DropDown.Item>
+                    </DropDown.Container>
                 </Info>
 
                 <Info icon={faSliders} title={"별점"}>
@@ -91,34 +105,24 @@ export default function Response() {
                 </div>
             </div>
 
-            {}
-
-            <Article
-                type="찍어드려요"
-                rating={5}
-                theme={["테마", "긴테마"]}
-                location="대구광역시 수성구 범어동"
-                imgUrls={[
-                    "https://static.vecteezy.com/system/resources/previews/005/857/332/non_2x/funny-portrait-of-cute-corgi-dog-outdoors-free-photo.jpg",
-                    "https://images.rawpixel.com/image_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIzLTA4L3Jhd3BpeGVsX29mZmljZV8xNV9waG90b19vZl9hX2RvZ19ydW5uaW5nX3dpdGhfb3duZXJfYXRfcGFya19lcF9mM2I3MDQyZC0zNWJlLTRlMTQtOGZhNy1kY2Q2OWQ1YzQzZjlfMi5qcGc.jpg",
-                    "https://st2.depositphotos.com/2222024/5609/i/450/depositphotos_56093859-stock-photo-happy-little-orange-havanese-puppy.jpg",
-                    "https://media.cnn.com/api/v1/images/stellar/prod/220818142713-dogs-tears-emotions-wellness-stock.jpg?c=16x9&q=h_720,w_1280,c_fill",
-                ]}
-                description={"/"}
-            />
-            <Article
-                type="찍어드려요"
-                rating={5}
-                theme={["테마", "긴테마"]}
-                location="대구광역시 수성구 범어동"
-                imgUrls={[
-                    "https://static.vecteezy.com/system/resources/previews/005/857/332/non_2x/funny-portrait-of-cute-corgi-dog-outdoors-free-photo.jpg",
-                    "https://images.rawpixel.com/image_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIzLTA4L3Jhd3BpeGVsX29mZmljZV8xNV9waG90b19vZl9hX2RvZ19ydW5uaW5nX3dpdGhfb3duZXJfYXRfcGFya19lcF9mM2I3MDQyZC0zNWJlLTRlMTQtOGZhNy1kY2Q2OWQ1YzQzZjlfMi5qcGc.jpg",
-                    "https://st2.depositphotos.com/2222024/5609/i/450/depositphotos_56093859-stock-photo-happy-little-orange-havanese-puppy.jpg",
-                    "https://media.cnn.com/api/v1/images/stellar/prod/220818142713-dogs-tears-emotions-wellness-stock.jpg?c=16x9&q=h_720,w_1280,c_fill",
-                ]}
-                description={"/"}
-            />
+            {data ? (
+                data.map((element, index) => {
+                    return (
+                        <Article
+                            key={index}
+                            type="찍어드려요"
+                            name={element.grapherName}
+                            theme={element.themaList.map((el) => el.themaName)}
+                            location={`${element.regionList[0].si} ${element.regionList[0].gu}`}
+                            rating={element.stars}
+                            imgUrls={element.portfolioList.slice(0, 4).map((el) => el.imagePath)}
+                            description={`/photo/request/detail/${element.id}`}
+                        />
+                    );
+                })
+            ) : (
+                <Loader />
+            )}
         </>
     );
 }

@@ -2,8 +2,35 @@ import { Profile } from "../components/Profile";
 import "./RequestDetail.scss";
 import Grid from "../components/Grid";
 import { motion } from "framer-motion";
+import { useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import { HOST } from "../utils/host";
+import { useCookies } from "react-cookie";
 
 export default function RequestDetail() {
+    const { id } = useParams();
+    const [cookie] = useCookies(["token"]);
+
+    const [status, setStatus] = useState("fetching");
+    const [data, setData] = useState(null);
+
+    useEffect(() => {
+        fetch(`${HOST}/api/v1/user/grapher/read/${id}`, {
+            headers: {
+                Authorization: `Bearer ${cookie.token}`,
+            },
+        })
+            .then((response) => {
+                return response.json();
+            })
+            .then((result) => {
+                console.log(result);
+                setStatus("success");
+                setData(result);
+            });
+    }, []);
+
     const dataItems = [
         {
             imagePath: "이미지 경로 1",
@@ -48,20 +75,25 @@ export default function RequestDetail() {
                 className="slideDown" // 애니메이션 클래스를 추가합니다.
                 style={{ width: "100%", position: "relative", top: 0 }}>
                 <Profile.Wrapper>
-                    <Profile.Aside imgSrc={""} igLink={"http://www.naver.com"} fbLink={"http://www.google.com"}></Profile.Aside>
-                    <Profile.Content
-                        title="My Profile"
-                        rating={5}
-                        theme={["테마", "긴 테마"]}
-                        region="대구광역시 수성구 범어동"
-                        time="1시간 ~ "
-                        phone="010-1234-1234"
-                        price="50,000원"
-                        description="설명설명설명"
-                    />
+                    <Profile.Aside
+                        imgSrc={"https://st3.depositphotos.com/6672868/13701/v/450/depositphotos_137014128-stock-illustration-user-profile-icon.jpg"}
+                        igLink={data && data.snsAddress}
+                        fbLink={data && data.snsAddress}></Profile.Aside>
+                    {data != null && (
+                        <Profile.Content
+                            title={data.name}
+                            rating={data.stars}
+                            theme={[data.themas[0].themaName]}
+                            region={`${data.regions[0].si} ${data.regions[0].gu}`}
+                            time="1시간 ~ "
+                            phone={data.phoneNumber}
+                            price={data.price}
+                            description={data.intro}
+                        />
+                    )}
                 </Profile.Wrapper>
             </motion.div>
-            <Grid dataItems={dataItems} />
+            {data != null && <Grid dataItems={data.portfolios} />}
         </div>
     );
 }

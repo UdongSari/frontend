@@ -34,7 +34,10 @@ export default function MyPage() {
                 className="slideDown" // 애니메이션 클래스를 추가합니다.
                 style={{ width: "100%", position: "relative", top: 0 }}>
                 <Profile.Wrapper>
-                    <Profile.Aside imgSrc={""} igLink={"http://www.naver.com"} fbLink={"http://www.google.com"}></Profile.Aside>
+                    <Profile.Aside
+                        imgSrc={"https://st3.depositphotos.com/6672868/13701/v/450/depositphotos_137014128-stock-illustration-user-profile-icon.jpg"}
+                        igLink={"http://www.naver.com"}
+                        fbLink={"http://www.google.com"}></Profile.Aside>
                     <Profile.Content
                         title="My Profile"
                         rating={5}
