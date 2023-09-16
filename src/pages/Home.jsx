@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { Button } from "../components/Button";
 
+
 import heroImage from "../assets/hero.png";
 
 import "./Home.scss";
@@ -32,4 +33,5 @@ export default function Home() {
             </section>
         </main>
     );
+
 }

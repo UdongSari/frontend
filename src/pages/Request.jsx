@@ -94,7 +94,9 @@ export default function Request() {
           "https://st2.depositphotos.com/2222024/5609/i/450/depositphotos_56093859-stock-photo-happy-little-orange-havanese-puppy.jpg",
           "https://media.cnn.com/api/v1/images/stellar/prod/220818142713-dogs-tears-emotions-wellness-stock.jpg?c=16x9&q=h_720,w_1280,c_fill",
         ]}
-        description={"요구사항"}
+        description={
+          "안녕하세요, 스냅사진을 사랑하는 스냅러버입니다! 제 나이는 25세이며, 제 직업은 패션 블로거입니다.\n 스냅사진을 찍는 것을 취미로 즐기며 패션 스타일링에도 관심을 가지고 있어요.\n제 스냅사진 컬렉션과 패션 스타일링 팁은 제 인스타그램 계정인 @snaplover_photos 에서 확인하실 수 있습니다.\n여러분도 저와 함께 멋진 순간을 스냅사진으로 찍어주세요!"
+        }
       />
 
       <Article

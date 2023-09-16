@@ -1,3 +1,4 @@
+// counter.jsx
 const SET_LOGIN = "counter/SET_LOGIN";
 const SET_LOGOUT = "counter/SET_LOGOUT";
 
