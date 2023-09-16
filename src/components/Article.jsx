@@ -11,7 +11,7 @@ import Rating from "./Rating";
 // 찍어주세요 props : type, theme, location, imgurls, description, price
 // 찍어드려요 props : type, rating, theme, location, imgurls, description
 
-export const Article = ({ type, rating, theme, location, imgUrls, description, price }) => {
+export const Article = ({ type, name, rating, theme, location, imgUrls, description, price }) => {
     const navigate = useNavigate();
     const [extend, setExtend] = useState(false);
 
@@ -29,7 +29,7 @@ export const Article = ({ type, rating, theme, location, imgUrls, description, p
                 <div className="article-title">
                     <p style={{ color: "#ff8a00" }}>{type}</p>
 
-                    <h1>사진사 이름</h1>
+                    <h1>{name}</h1>
                     <ButtonGroup>
                         <Button type="orange-filled">연락하기</Button>
                         <Button type="orange-stroke" onClick={handleClick}>

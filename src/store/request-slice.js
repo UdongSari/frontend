@@ -17,7 +17,7 @@ export const RequestSlice = createSlice({
     },
 });
 
-export const RequestFetchThunk = (si, gu) => {
+export const RequestFetchThunk = (si, gu, token) => {
     return async (dispatch) => {
         dispatch(
             RequestActions.setState({
@@ -31,6 +31,7 @@ export const RequestFetchThunk = (si, gu) => {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`,
                 },
                 body: JSON.stringify({
                     si: si,

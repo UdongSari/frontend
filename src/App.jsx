@@ -11,6 +11,8 @@ import RequestDetail from "../src/pages/RequestDetail";
 import ResponseDetail from "./pages/ResponseDetail";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
+import MyPage from "./pages/MyPage";
+import NewPortFolio from "./pages/NewPortfolio";
 
 import { NavBar } from "./components/Navbar";
 import { ChatHistory } from "./pages/ChatHistory";
@@ -21,6 +23,8 @@ export default function App() {
             <NavBar />
 
             <Routes>
+                <Route path="/mypage" element={<MyPage />}></Route>
+                <Route path="/portfolio/create" element={<NewPortFolio />} />
                 <Route path="/auth/signin" element={<SignIn />} />
                 <Route path="/auth/signup" element={<SignUp />} />
                 <Route path="/photo/request" element={<Request />} />

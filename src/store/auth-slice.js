@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { useEffect } from "react";
 import { HOST } from "../utils/host";
 
 export const AuthSlice = createSlice({
@@ -35,12 +34,13 @@ export const SignUpThunk = (username, password, name, age, phone) => {
         );
 
         const request = async () => {
-            const response = await fetch(`/api/v1/signup`, {
+            const response = await fetch(`${HOST}/api/v1/signup`, {
                 method: "POST",
-                // credentials: "include",
+
                 headers: {
                     "Content-Type": "application/json",
                 },
+                // credentials: "include",
                 body: JSON.stringify({
                     username: username,
                     password: password,
@@ -56,6 +56,7 @@ export const SignUpThunk = (username, password, name, age, phone) => {
 
         try {
             const data = await request();
+
             dispatch(
                 AuthActions.setSignUp({
                     status: "success",
@@ -80,38 +81,38 @@ export const SignInThunk = (id, pw) => {
             })
         );
 
-        const request = async () => {
-            const response = await fetch(`${HOST}/api/v1/login`, {
-                method: "POST",
-                credentials: "include",
-                body: JSON.stringify({
-                    username: id,
-                    password: pw,
-                }),
-            });
-            if (!response.ok) throw new Error("로그인 실패");
-            return response.headers();
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+
+        var raw = JSON.stringify({
+            username: id,
+            password: pw,
+        });
+
+        var requestOptions = {
+            method: "POST",
+            headers: myHeaders,
+            body: raw,
         };
 
-        try {
-            console.log("req");
-            const headers = await request();
-            console.log(headers);
-
-            dispatch(
-                AuthActions.setSignIn({
-                    status: "success",
-                    data: data,
-                })
-            );
-        } catch (err) {
-            dispatch(
-                AuthActions.setSignIn({
-                    status: "failed",
-                    data: null,
-                })
-            );
-        }
+        fetch(`${HOST}/api/v1/login`, requestOptions)
+            .then((response) => response.text())
+            .then((result) => {
+                dispatch(
+                    AuthActions.setSignIn({
+                        status: "success",
+                        token: result,
+                    })
+                );
+            })
+            .catch((error) => {
+                dispatch(
+                    AuthActions.setSignIn({
+                        status: "failed",
+                        token: null,
+                    })
+                );
+            });
     };
 };
 

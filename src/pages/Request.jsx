@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { faCamera, faFilter, faPhotoFilm, faSliders } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useSelector, useDispatch } from "react-redux";
+import { useCookies } from "react-cookie";
 
 import { Article } from "../components/Article";
 import { Info } from "../components/Info";
@@ -8,17 +10,41 @@ import { DropDown } from "../components/Dropdown";
 import { HashTag } from "../components/HashTag";
 import { Button, ButtonAdd } from "../components/Button";
 import Rating from "../components/Rating";
+import { Loader } from "../components/Loader";
 
 import "./Request.scss";
+import { RequestFetchThunk } from "../store/request-slice";
+import { useNavigate } from "react-router-dom";
 
 export default function Request() {
-    const [si, setSi] = useState({ index: -1, value: "시" });
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    const [cookies, setCookie, removeCookie] = useCookies(["token"]);
+
+    const [si, setSi] = useState({ index: 0, value: "대구광역시" });
     const [gu, setGu] = useState({ index: -1, value: "군 / 구" });
 
-    const [theme, setTheme] = useState({ index: -1, value: "" });
-    const [rating, setRating] = useState({ index: -1, value: "" });
+    const [theme, setTheme] = useState({ index: -1, value: "테마" });
+    const [rating, setRating] = useState({ index: -1, value: "별점" });
 
     const [sort, setSort] = useState({ index: -1, value: "정렬" });
+
+    // Fetch
+    const { status, data } = useSelector((state) => state.request);
+
+    useEffect(() => {
+        if (!cookies.token) {
+            alert("다시 로그인 해 주세요");
+            navigate("/auth/login");
+        } else {
+            dispatch(RequestFetchThunk(si.value, gu.value, cookies.token));
+        }
+    }, [si, gu]);
+
+    useEffect(() => {
+        console.log(status, data);
+    }, []);
 
     return (
         <>
@@ -80,33 +106,23 @@ export default function Request() {
                 </div>
             </div>
 
-            <Article
-                type="찍어주세요"
-                price="~ 50,000 원"
-                theme={["테마", "긴테마"]}
-                location="대구광역시 수성구 범어동"
-                imgUrls={[
-                    "https://static.vecteezy.com/system/resources/previews/005/857/332/non_2x/funny-portrait-of-cute-corgi-dog-outdoors-free-photo.jpg",
-                    "https://images.rawpixel.com/image_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIzLTA4L3Jhd3BpeGVsX29mZmljZV8xNV9waG90b19vZl9hX2RvZ19ydW5uaW5nX3dpdGhfb3duZXJfYXRfcGFya19lcF9mM2I3MDQyZC0zNWJlLTRlMTQtOGZhNy1kY2Q2OWQ1YzQzZjlfMi5qcGc.jpg",
-                    "https://st2.depositphotos.com/2222024/5609/i/450/depositphotos_56093859-stock-photo-happy-little-orange-havanese-puppy.jpg",
-                    "https://media.cnn.com/api/v1/images/stellar/prod/220818142713-dogs-tears-emotions-wellness-stock.jpg?c=16x9&q=h_720,w_1280,c_fill",
-                ]}
-                description={"요구사항"}
-            />
-
-            <Article
-                type="찍어주세요"
-                price="~ 50,000 원"
-                theme={["테마", "긴테마"]}
-                location="대구광역시 수성구 범어동"
-                imgUrls={[
-                    "https://static.vecteezy.com/system/resources/previews/005/857/332/non_2x/funny-portrait-of-cute-corgi-dog-outdoors-free-photo.jpg",
-                    "https://images.rawpixel.com/image_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIzLTA4L3Jhd3BpeGVsX29mZmljZV8xNV9waG90b19vZl9hX2RvZ19ydW5uaW5nX3dpdGhfb3duZXJfYXRfcGFya19lcF9mM2I3MDQyZC0zNWJlLTRlMTQtOGZhNy1kY2Q2OWQ1YzQzZjlfMi5qcGc.jpg",
-                    "https://st2.depositphotos.com/2222024/5609/i/450/depositphotos_56093859-stock-photo-happy-little-orange-havanese-puppy.jpg",
-                    "https://media.cnn.com/api/v1/images/stellar/prod/220818142713-dogs-tears-emotions-wellness-stock.jpg?c=16x9&q=h_720,w_1280,c_fill",
-                ]}
-                description={"요구사항"}
-            />
+            {data ? (
+                data.map((element, index) => {
+                    return (
+                        <Article
+                            type="찍어주세요"
+                            name={element.userName}
+                            price={`${element.price} 원`}
+                            theme={element.themaList.map((el) => el.themaName)}
+                            location={`${element.regionList[0].si} ${element.regionList[0].gu}`}
+                            imgUrls={element.portfolioList.map((el) => el.imagePath)}
+                            description={element.intro}
+                        />
+                    );
+                })
+            ) : (
+                <Loader />
+            )}
         </>
     );
 }
