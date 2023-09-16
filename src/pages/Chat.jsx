@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
+import { HOST } from "../utils/host";
 
 import "./Chat.scss";
 
@@ -19,9 +20,9 @@ export default function Chat() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("http://localhost:8080/chat/AllRoom");
+        const response = await axios.get(`${HOST}/api/v1/user/joinRoom/1`);
         setChatRooms(response.data);
-        // console.log(chatRooms[0].roomId);
+        console.log(response.data);
         setRecentChat(chatRooms[0].roomId);
       } catch (error) {
         console.error("데이터 가져오기 실패:", error);
