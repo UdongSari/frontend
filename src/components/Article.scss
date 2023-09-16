@@ -4,11 +4,11 @@
 .article-container {
     box-sizing: border-box;
     width: 1024px;
-
     margin: 25px auto;
     padding: 50px;
     border-radius: 20px;
     @include container-shadow;
+    white-space: pre-line;
 }
 
 .article-head {
@@ -34,6 +34,7 @@
 
 .article-context {
     margin: 20px 5px;
+    white-space: pre-line;
 }
 
 .article-img {
