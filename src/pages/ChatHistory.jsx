@@ -16,18 +16,23 @@ import { useCookies } from "react-cookie";
 import { useSelector, useDispatch } from "react-redux";
 
 export const ChatHistory = () => {
-  useEffect(() => {
-    console.log("component mount");
-  }, []);
-
-  const [socketOpened, setSocketOpened] = useState(false);
+  const { id } = useParams();
+  const { status, token } = useSelector((state) => state.auth.signin);
+  const [cookies, setCookie, removeCookie] = useCookies(["token"]);
   const [clicked, setClicked] = useState(false);
   function handleButtonClick() {
     setClicked(!clicked);
   }
-  const { id } = useParams();
-  const params = useParams();
-  console.log(params);
+
+  useEffect(() => {
+    console.log("component mount");
+    //joinRoom
+    setCookie("token", token);
+    console.log("Cookies", cookies);
+  }, []);
+
+  const [messaged, setMessaged] = useState("");
+  const [socketOpened, setSocketOpened] = useState(false);
   const inputRef = useRef();
   const [history, setHistory] = useState([
     {
@@ -43,10 +48,14 @@ export const ChatHistory = () => {
   const userName = "이수현";
   function filterDataByUserName(data, userName, roomId) {
     const filteredData = [];
+    console.log("data");
+    console.log(data);
     data.map((element) => {
       filteredData.push({
         type:
-          userName === element.sender && element.type === "TALK"
+          userName === element.sender &&
+          element.type === "TALK" &&
+          element.type != "ENTER"
             ? "send"
             : "receive",
         content: element.message,
@@ -56,114 +65,11 @@ export const ChatHistory = () => {
   }
 
   const [chatRooms, setChatRooms] = useState([]);
-  const [previousData, setPreviousData] = useState([]);
   const [socket, setSocket] = useState(null);
 
-  const { status, token } = useSelector((state) => state.auth.signin);
-  const [cookies, setCookie, removeCookie] = useCookies(["token"]);
-
-  setCookie("token", token);
-  console.log("Cookies", cookies);
-  axios
-    .get(`${HOST}/api/v1/user/joinRoom/1`, {
-      headers: {
-        Authorization: `Bearer ${cookies.token}`,
-      },
-    })
-    .then((response) => {
-      // 요청 성공 시 데이터 처리
-      console.log("data");
-      console.log(response.data);
-
-      const newData = response.data.chatList;
-      const filteredData = filterDataByUserName(newData, userName, id);
-      console.log("CHAT 을 가져옵니다.", filteredData);
-      setHistory(filteredData);
-    })
-    .catch((error) => {
-      // 요청 실패 시 에러 처리
-      console.error("GET 요청 실패:", error);
-    });
-
-  //   useEffect(() => {
-  //     if (socket) {
-  //       // WebSocket 연결이 열렸을 때
-  //       socket.addEventListener("open", (event) => {
-  //         console.log("WebSocket 연결이 열렸습니다.");
-  //         setSocketOpened(true);
-  //       });
-
-  //       // 에러 발생 시
-  //       socket.addEventListener("error", (event) => {
-  //         console.error("WebSocket 오류:", event);
-  //       });
-
-  //       // 연결이 닫힐 때
-  //       socket.addEventListener("close", (event) => {
-  //         console.log("WebSocket 연결이 닫혔습니다.");
-  //         setSocketOpened(false);
-  //       });
-  //     }
-  //   }, [socket]);
-
-  // ...
-
-  useEffect(() => {
-    // 컴포넌트가 마운트될 때 한 번만 WebSocket 연결을 열기
-    const newSocket = new WebSocket(`ws://${HOST}/ws/chat`);
-    setSocket(newSocket);
-
-    // 컴포넌트가 언마운트될 때 WebSocket 연결 닫기
-    return () => {
-      if (newSocket) {
-        newSocket.close();
-        console.log("WebSocket 연결이 닫혔습니다.");
-      }
-    };
-  }, []);
-
-  useEffect(() => {
-    // 컴포넌트가 마운트될 때 WebSocket 연결 열기
-    const socket = new WebSocket(`ws://${HOST}/ws/chat`);
-
-    socket.addEventListener("open", (event) => {
-      console.log("WebSocket 연결이 열렸습니다.");
-      setSocket(socket);
-      setSocketOpened(true);
-    });
-
-    socket.addEventListener("error", (event) => {
-      console.error("WebSocket 오류:", event);
-    });
-
-    return () => {
-      // 컴포넌트가 언마운트될 때 WebSocket 연결 닫기
-      if (socket) {
-        socket.close();
-        setSocketOpened(false);
-        console.log("WebSocket 연결이 닫혔습니다.");
-      }
-    };
-  }, []);
-
-  //무한 렌더링 발생함
-  useEffect(() => {
-    if (socketOpened) {
-      axios
-        .get(`ws://${HOST}/ws/chat`)
-        .then((response) => {
-          // 요청 성공 시 데이터 처리
-          const data = response.data;
-          const filteredData = filterDataByUserName(data, userName, id);
-          setHistory(filteredData);
-          console.log("CHAT 을 가져옵니다.", filteredData);
-        })
-        .catch((error) => {
-          // 요청 실패 시 에러 처리
-          console.error("GET 요청 실패:", error);
-        });
-    }
-  }, [clicked, socketOpened]);
+  const onSocketOpen = () => {
+    console.log("socket opened!");
+  };
 
   const imgSrc =
     "https://static.vecteezy.com/system/resources/previews/005/857/332/non_2x/funny-portrait-of-cute-corgi-dog-outdoors-free-photo.jpg";
@@ -171,45 +77,57 @@ export const ChatHistory = () => {
   const description = "회원 설명";
 
   function sendMessage(message) {
-    if (socket.readyState === WebSocket.OPEN) {
-      // WebSocket이 연결되어 있고 열려 있는 경우
+    if (socket && socket.readyState === WebSocket.OPEN) {
       const Dummymessage = {
         type: "TALK",
         roomId: id,
         sender: "이수현",
-        message: message, // 매개변수로 받은 메시지 사용
+        message: message,
         time: "0",
       };
+      setMessaged(Dummymessage);
       socket.send(JSON.stringify(Dummymessage));
-      console.log(Dummymessage);
+      console.log("Dummymessage", Dummymessage);
     } else {
       console.error("WebSocket 연결이 열려있지 않습니다.");
     }
   }
 
-  //   const createRoom = async () => {
-  //     try {
-  //       const response = await fetch("http://localhost:8080/chat/createRoom", {
-  //         method: "POST",
-  //         mode: "no-cors",
-  //         headers: {
-  //           "Content-Type": "application/json",
-  //         },
-  //         body: JSON.stringify({}),
-  //       });
+  // WebSocket 연결을 열기 위한 함수
+  const openWebSocketConnection = () => {
+    const socket = new WebSocket(`ws://54.161.179.91:52038/ws/chat`);
+    socket.addEventListener("open", () => {
+      console.log("WebSocket 연결이 열렸습니다.");
+      setSocket(socket); // WebSocket 객체를 state에 저장
+      axios
+        .get(`${HOST}/api/v1/user/joinRoom/1`, {
+          headers: {
+            Authorization: `Bearer ${cookies.token}`,
+          },
+        })
+        .then((response) => {
+          // 요청 성공 시 데이터 처리
+          console.log("data", response.data);
 
-  //       if (!response.ok) {
-  //         throw new Error(`HTTP 오류! 상태 코드: ${response.status}`);
-  //       }
-  //       const responseData = await response.json();
-  //       console.log("방 생성 응답 데이터:", responseData);
-  //     } catch (error) {
-  //       console.error("오류 발생:", error);
-  //     }
-  //   };
+          const newData = response.data.chatList;
+          const filteredData = filterDataByUserName(newData, userName, id);
+          console.log("CHAT 을 가져옵니다.", filteredData);
+          setHistory(filteredData);
+        })
+        .catch((error) => {
+          // 요청 실패 시 에러 처리
+          console.error("GET 요청 실패:", error);
+        });
+    });
+    socket.addEventListener("error", (event) => {
+      console.error("WebSocket 오류:", event);
+    });
+  };
 
-  // 방 만들기 함수 호출
-  //   createRoom();
+  // 컴포넌트가 마운트될 때 WebSocket 연결 열기
+  useEffect(() => {
+    openWebSocketConnection();
+  }, []);
 
   const handleClick = () => {
     //보내기
@@ -222,7 +140,6 @@ export const ChatHistory = () => {
     ]);
     sendMessage(inputRef.current.value);
     handleButtonClick();
-
     inputRef.current.value = "";
   };
 
