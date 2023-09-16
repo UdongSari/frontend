@@ -96,7 +96,12 @@ export const SignInThunk = (id, pw) => {
         };
 
         fetch(`${HOST}/api/v1/login`, requestOptions)
-            .then((response) => response.text())
+            .then((response) => {
+                if (response.status === 401) {
+                    throw new Error("아이디 혹은 비밀번호가 일치하지 않습니다");
+                }
+                return response.text();
+            })
             .then((result) => {
                 dispatch(
                     AuthActions.setSignIn({

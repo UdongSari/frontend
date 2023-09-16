@@ -38,7 +38,11 @@ export default function Request() {
             alert("다시 로그인 해 주세요");
             navigate("/auth/login");
         } else {
-            dispatch(RequestFetchThunk(si.value, gu.value, cookies.token));
+            if (gu.value === "군 / 구") {
+                dispatch(RequestFetchThunk(si.value, null, cookies.token));
+            } else {
+                dispatch(RequestFetchThunk(si.value, gu.value, cookies.token));
+            }
         }
     }, [si, gu]);
 
