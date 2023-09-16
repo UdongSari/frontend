@@ -50,19 +50,31 @@
     color: #595959;
 }
 
-#id, #pw {
-    width: 16rem;
-    height: 2rem;
-    padding-left: 0.5rem;
+.input__item{
+  width: 16rem;
+  height: 2rem;
+  padding-left: 0.5rem;
 
-    font-size: 1.05rem;
+  font-size: 1.05rem;
+
 }
-#id:focus, #pw:focus {
-    outline-color: $color-orange;
+
+.input__item {
+  width: 16rem;
+  height: 2rem;
+  padding-left: 0.5rem;
+  font-size: 1.05rem;
 }
-#id::placeholder, #pw::placeholder {
-    font-size: 1.05rem;
+
+.input__item:focus {
+  outline-color: $color-orange; /* 포커스 시 아웃라인 색상 추가 */
 }
+
+.input__item::placeholder {
+  font-size: 1.05rem;
+}
+
+
 
 .input-container {
     display: flex;
