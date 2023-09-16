@@ -85,7 +85,6 @@ export default function Request() {
                 </div>
             </div>
 
-
             <Article
                 type="찍어주세요"
                 price="~ 50,000 원"
