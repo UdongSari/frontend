@@ -116,7 +116,7 @@ const LoginBtn = ({ idValue, pwValue, handleLogin }) => {
       </button>
       <div className="small-txt">
         아직 계정이 없으신가요?{" "}
-        <Link to="/signup" className="link-style">
+        <Link to="/auth/signUp" className="link-style">
           회원가입
         </Link>
       </div>
