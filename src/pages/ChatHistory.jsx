@@ -95,7 +95,7 @@ export const ChatHistory = () => {
 
   // WebSocket 연결을 열기 위한 함수
   const openWebSocketConnection = () => {
-    const socket = new WebSocket(`ws://54.161.179.91:52038/ws/chat`);
+    const socket = new WebSocket(`ws://13.209.95.143:52038/ws/chat`);
     socket.addEventListener("open", () => {
       console.log("WebSocket 연결이 열렸습니다.");
       setSocket(socket); // WebSocket 객체를 state에 저장

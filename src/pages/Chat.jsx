@@ -32,10 +32,19 @@ export default function Chat() {
           },
         });
         console.log(response.data);
-        const chatRoomIds = response.data[0].chatRoomId;
-        console.log(chatRoomIds); //
-        setChatRooms(chatRoomIds);
-        setRecentChat(chatRoomIds);
+        if (response.data[0] == null) {
+          const response = await axios.get(`${HOST}/api/v1/user/joinRoom/1`, {
+            headers: {
+              Authorization: `Bearer ${cookies.token}`,
+            },
+          });
+        } else {
+          console.log(response.data);
+          const chatRoomIds = response.data[0].chatRoomId;
+          console.log(chatRoomIds);
+          setChatRooms(chatRoomIds);
+          setRecentChat(chatRoomIds);
+        }
       } catch (error) {
         console.error("데이터 가져오기 실패:", error);
       }
