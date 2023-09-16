@@ -11,11 +11,6 @@ export default function SignIn() {
   const [pwValue, setPwValue] = useState("");
   const [logins, setLogins] = useState(false);
 
-  // 리덕스 스토어에서 상태값 가져오기
-  // const logined = useSelector((state) => state.counter.logined);
-  // const userId = useSelector((state) => state.counter.userId);
-  // const dispatch = useDispatch();
-
   /*리덕스 관련 코드 안됨
   // const counterState = useSelector((state) => state.counter); // 상태값 가져오기
   // console.log("꺼내온거", counterState);
@@ -63,7 +58,7 @@ export default function SignIn() {
   };
 
   return (
-    <div className="Login" style={{ paddingTop: "200px" }}>
+    <div className="Login">
       <form className="input-outer" style={{ paddingLeft: "1.8rem" }}>
         <TextBlock />
         <br />
