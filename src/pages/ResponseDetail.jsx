@@ -104,7 +104,9 @@ export default function ResponseDetail() {
             });
         }
 
-        navigate("/photo/request");
+        setTimeout(() => {
+            navigate("/photo/request");
+        }, 3000);
     };
 
     // 날짜를 원하는 형식으로 포맷하는 함수

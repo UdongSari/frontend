@@ -26,6 +26,7 @@ export default function Chat() {
         // console.log("Cookies", cookies);
         const fetchData = async () => {
             try {
+                // 방번호 찾기
                 const response = await axios.get(`${HOST}/api/v1/user/searchMyRoom`, {
                     headers: {
                         Authorization: `Bearer ${cookies.token}`,
@@ -66,7 +67,9 @@ export default function Chat() {
                     }}
                 />
             </NavAside.Container>
-            <Outlet></Outlet>
+            <div className="chat-content-section">
+                <Outlet></Outlet>
+            </div>
         </main>
     );
 }

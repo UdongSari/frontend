@@ -94,7 +94,9 @@ export default function NewPortFolio() {
             });
         }
 
-        navigate("/photo/response");
+        setTimeout(() => {
+            navigate("/photo/response");
+        }, 3000);
     };
 
     // 날짜를 원하는 형식으로 포맷하는 함수
